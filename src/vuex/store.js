@@ -1,12 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Axios from 'axios'
 
 Vue.use(Vuex)
+const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=bangkok&units=metric&appid=efb29b6eb141f534bfca1523000078ca'
 
 const state = {
   todos: [],
+  data: [],
   number: 0
 }
+
+// Vuex api
+
+Axios.get(apiUrl).then((res) => {
+  state.data = res.data
+})
+//
 
 const mutations = {
   addText: (state, name) => {
